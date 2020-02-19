@@ -1,0 +1,30 @@
+# non-www, subdomains redirect
+server {
+	listen 80;
+	server_name abc.com;
+	return 301 https://www.abc.com$request_uri;
+}
+
+server {
+	listen 80;
+	server_name www.abc.com vi.abc.com fr.abc.com;
+        access_log              /var/log/nginx/abc.com_access.log main;
+        error_log               /var/log/nginx/abc.com_error.log;	
+	# security
+	include nginxconfig.io/security.conf;
+
+	# reverse proxy
+	location / {
+		proxy_pass http://web01.priv:3000;
+		include nginxconfig.io/proxy.conf;
+	}
+
+	# additional config
+	include nginxconfig.io/general.conf;
+}
+
+server {
+        listen 80;
+        server_name *.abc.com ;
+        return 301 https://www.abc.com;
+}
