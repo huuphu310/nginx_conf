@@ -6,7 +6,6 @@ services:
      volumes:
        - /data/docker/nginx/conf.d:/etc/nginx/conf.d
        - /data/docker/nginx/log:/var/log/nginx
-       - /data/docker/nginx/ssl:/etc/nginx/ssl
      restart: always
      ports:
        - "80:80"
