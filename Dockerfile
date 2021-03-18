@@ -1,4 +1,4 @@
-FROM nginx:stable
+FROM ranadeeppolavarapu/nginx-http3:latest
 
 RUN rm /var/log/nginx/*
 
