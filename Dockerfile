@@ -3,6 +3,19 @@ FROM ranadeeppolavarapu/nginx-http3:latest
 RUN rm /var/log/nginx/*
 
 #RUN apt-get update -qq && apt-get install -y geoip-database logrotate
+RUN apk add logrotate
+RUN apk --no-cache add \
+        autoconf \
+        build-base \
+        geoip \
+        geoip-dev
+
+RUN mkdir -p /usr/share/GeoIP && cd /usr/share/GeoIP/ && \
+    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
+    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && \
+    gzip -d *
+
+RUN pecl install geoip-1.1.1
 # Copy MyApp nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx /etc/logrotate.d/
