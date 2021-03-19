@@ -15,7 +15,7 @@ RUN apk --no-cache add \
 #    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && \
 #    gzip -d *
 
-RUN pecl install geoip-1.1.1
+#RUN pecl install geoip-1.1.1
 # Copy MyApp nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx /etc/logrotate.d/
