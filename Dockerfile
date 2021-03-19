@@ -10,10 +10,10 @@ RUN apk --no-cache add \
         geoip \
         geoip-dev
 
-RUN mkdir -p /usr/share/GeoIP && cd /usr/share/GeoIP/ && \
-    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
-    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && \
-    gzip -d *
+#RUN mkdir -p /usr/share/GeoIP && cd /usr/share/GeoIP/ && \
+#    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
+#    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && \
+#    gzip -d *
 
 RUN pecl install geoip-1.1.1
 # Copy MyApp nginx config
